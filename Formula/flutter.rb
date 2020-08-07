@@ -1,5 +1,5 @@
 class Flutter < Formula
-    desc "Google’s UI toolkit for mobile, web, and desktop from a single codebase"
+    desc "Flutter"
     homepage "https://flutter.dev"
     url "https://storage.googleapis.com/flutter_infra/releases/releases_macos.json"
     version "sdk"
@@ -14,7 +14,7 @@ class Flutter < Formula
     bottle :unneeded
   
     def install
-      puts "\n📡 Retrieving latest release...\n\n"
+      puts "\n Retrieving latest release...\n\n"
       releases_json = `curl -A "Flutter SDK Homebrew" https://storage.googleapis.com/flutter_infra/releases/releases_macos.json`
       data = JSON.parse releases_json
 
@@ -42,26 +42,20 @@ class Flutter < Formula
         end
       end
   
-      puts "\n🎯 Found version #{channel} - #{result["version"]} - downloading...\n\n"
+      puts "\n Found version #{channel} - #{result["version"]} - downloading...\n\n"
       `curl -A "Flutter SDK Homebrew" #{base_url}/#{result["archive"]} -L -o flutter.zip`
   
-      puts "\n📦 Unpacking files...\n\n"
+      puts "\n Unpacking files...\n\n"
       `bsdtar --strip-components=1 -xvf flutter.zip`
   
-      puts "\n🚧 Installing...\n"
+      puts "\n Installing...\n"
       prefix.install Dir["packages",".git*"]
       bin.install Dir["bin/*"]
     end
   
     def post_install
-      puts "\n👮‍ Updating cache folder permissions..."
+      puts "\n Updating cache folder permissions..."
       chmod "u+rw", Dir["#{prefix}/bin/cache/", "#{prefix}/bin/cache/*"]
-      puts "\n🎉‍ Flutter successfully installed! 👉 You may want to run flutter doctor to complete the Flutter SDK setup.\n\n"
-    end
-  
-    test do
-      system bin/"flutter", "--help"
-      system bin/"flutter", "create test_app"
-      assert_predicate testpath/"test_app.iml", :exist?
+      puts "\n successfully installed"
     end
   end
