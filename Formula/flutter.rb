@@ -14,7 +14,7 @@ class Flutter < Formula
     bottle :unneeded
   
     def install
-      puts "\n Retrieving latest release...\n\n"
+      puts "\n Retrieving json...\n\n"
       releases_json = `curl -A "Flutter SDK Homebrew" https://storage.googleapis.com/flutter_infra/releases/releases_macos.json`
       data = JSON.parse releases_json
 
