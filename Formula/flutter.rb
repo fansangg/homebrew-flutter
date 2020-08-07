@@ -1,7 +1,7 @@
 class Flutter < Formula
     desc "Flutter"
     homepage "https://flutter.dev"
-    url "https://storage.googleapis.com/flutter_infra/releases/releases_macos.json"
+    url "https://storage.flutter-io.cn/flutter_infra/releases/releases_macos.json"
     version "sdk"
   
     require 'json'
@@ -15,7 +15,7 @@ class Flutter < Formula
   
     def install
       puts "\n Retrieving json...\n\n"
-      releases_json = `curl -A "Flutter SDK Homebrew" https://storage.googleapis.com/flutter_infra/releases/releases_macos.json`
+      releases_json = `curl -A "Flutter SDK Homebrew" https://storage.flutter-io.cn/flutter_infra/releases/releases_macos.json`
       data = JSON.parse releases_json
 
       channel = nil
