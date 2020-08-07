@@ -53,15 +53,15 @@ class Flutter < Formula
       bin.install Dir["bin/*"]
     end
     
-    test do
-      system bin/"flutter", "--help"
-      system bin/"flutter", "create test_app"
-      assert_predicate testpath/"test_app.iml", :exist?
-    end
-  
     def post_install
       puts "\n Updating cache folder permissions..."
       chmod "u+rw", Dir["#{prefix}/bin/cache/", "#{prefix}/bin/cache/*"]
       puts "\n successfully installed"
+    end
+    
+    test do
+      system bin/"flutter", "--help"
+      system bin/"flutter", "create test_app"
+      assert_predicate testpath/"test_app.iml", :exist?
     end
   end
